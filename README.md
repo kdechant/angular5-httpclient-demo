@@ -1,27 +1,28 @@
-# Angular5HttpDemo
+# Angular 5 HTTP Client Demo App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
+This is a demo application showing how to use the HttpClient service and Observables in Angular 5.
 
-## Development server
+For background on the topic of Angular HTTP requests, please see my blog posts:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+https://www.metaltoad.com/blog/angular-2-http-observables-and-concurrent-data-loading
 
-## Code scaffolding
+https://www.metaltoad.com/blog/angular-2-using-http-service-write-data-api
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Note: This app uses the new and improved HttpClient service introduced in Angular 4.3. If you are using Angular 2 or Angular 4 v4.2 and below, see [this older demo using the deprecated Http service](https://github.com/kdechant/angular2-http-demo).
 
-## Build
+# What's in here
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+- app.js - a simple Express app which acts as the back-end API.
+- src/app/ - this folder contains the Angular app
+- config/ - this folder contains webpack-related scripts
 
-## Running unit tests
+# Running the app
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To run this application, you need NodeJS and NPM installed on your system. Then, run the following commands from your command prompt:
 
-## Running end-to-end tests
+```
+npm install
+npm start
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This will transpile the TypeScript files, bundle everything using Webpack, and start the Node server. The app will be available at [http://localhost:3000/](http://localhost:3000/)
