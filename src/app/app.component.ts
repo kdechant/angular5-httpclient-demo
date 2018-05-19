@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {DemoService} from './demo.service';
-import {Observable} from 'rxjs/Rx';
+import {throwError} from 'rxjs';  // Angular 6/RxJS 6
+// import {Observable} from 'rxjs/Rx';  // Angular 5/RxJS 5.5
 
 @Component({
   selector: 'demo-app',
   template:`
-  <h1>Angular 5 HttpClient Demo App</h1>
+  <h1>Angular 6 HttpClient Demo App</h1>
   <p>This is a complete mini-CRUD application using an Express back-end. See src/app/demo.service.ts for the API call code.</p>
   <h2>Foods</h2>
   <ul>
@@ -56,8 +57,8 @@ export class AppComponent {
   getBooksAndMovies() {
     this._demoService.getBooksAndMovies().subscribe(
       data => {
-        this.books = data[0]
-        this.movies = data[1]
+        this.books = data[0];
+        this.movies = data[1];
       }
       // No error or completion callbacks here. They are optional, but
       // you will get console errors if the Observable is in an error state.
@@ -74,7 +75,8 @@ export class AppComponent {
        },
        error => {
          console.error("Error saving food!");
-         return Observable.throw(error);
+         return throwError(error);  // Angular 6/RxJS 6
+         // return Observable.throw(error);  // Angular 5/RxJS 5.5
        }
     );
   }
@@ -88,7 +90,8 @@ export class AppComponent {
        },
        error => {
          console.error("Error saving food!");
-         return Observable.throw(error);
+         return throwError(error);  // Angular 6/RxJS 6
+         // return Observable.throw(error);  // Angular 5/RxJS 5.5
        }
     );
   }
@@ -103,7 +106,8 @@ export class AppComponent {
          },
          error => {
            console.error("Error deleting food!");
-           return Observable.throw(error);
+           return throwError(error);  // Angular 6/RxJS 6
+           // return Observable.throw(error);  // Angular 5/RxJS 5.5
          }
       );
     }

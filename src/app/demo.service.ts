@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {forkJoin} from 'rxjs';  // Angular 6/RxJs 6
+// import {Observable} from 'rxjs/Observable';  // Angular 5/RxJs 5.5
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -9,7 +10,7 @@ const httpOptions = {
 @Injectable()
 export class DemoService {
 
-    constructor(private http:HttpClient) {
+    constructor(private http: HttpClient) {
     }
 
     // NOTE: all API calls in this file use simple endpoints served by
@@ -24,10 +25,14 @@ export class DemoService {
     // Uses Observable.forkJoin() to run multiple concurrent http.get() requests.
     // The entire operation will result in an error state if any single request fails.
     getBooksAndMovies() {
-        return Observable.forkJoin(
-        this.http.get('/api/books'),
-        this.http.get('/api/movies')
+        return forkJoin(  // Angular 6/RxJs 6
+            this.http.get('/api/books'),
+            this.http.get('/api/movies')
         );
+        // return Observable.forkJoin(  // Angular 5/RxJs 5.5
+        //     this.http.get('/api/books'),
+        //     this.http.get('/api/movies')
+        // );
     }
 
     // send a POST request to the API to create a new data object
